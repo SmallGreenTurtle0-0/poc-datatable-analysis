@@ -1,0 +1,3 @@
+-r app/requirements.txt
+-r frontend/requirements.txt
+pre-commit==4.0.1
