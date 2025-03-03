@@ -19,7 +19,7 @@ def _init_llm_gpt_4o_mini() -> ChatOpenAI:
             api_key=settings.openai_api_key,
         )
     except Exception as e:
-        logger.error(f"Connect to OpenAI Chat GPT error: {e}")
+        logger.error(f'Connect to OpenAI Chat GPT error: {e}')
         raise RuntimeError('Failed to initialize OpenAI Chat GPT') from e
 
 
@@ -32,11 +32,27 @@ def _init_llm_llama_32() -> ChatOllama:
             temperature=0.8,
         )
     except Exception as e:
-        logger.error(f"Connect to Ollama: model Llama 3.2 error: {e}")
+        logger.error(f'Connect to Ollama: model Llama 3.2 error: {e}')
         raise RuntimeError(
             'Failed to initialize Ollama: model Llama 3.2',
         ) from e
 
 
+def _init_llm_llama_321b() -> ChatOllama:
+    logger.info('Initialize Ollama: model Llama 3.2.1b')
+
+    try:
+        return ChatOllama(
+            model='llama3.2.1b',
+            temperature=0.8,
+        )
+    except Exception as e:
+        logger.error(f'Connect to Ollama: model Llama 3.2.1b error: {e}')
+        raise RuntimeError(
+            'Failed to initialize Ollama: model Llama 3.2.1b',
+        ) from e
+
+
 llm_gpt_4o_mini: ChatOpenAI = _init_llm_gpt_4o_mini()
 llm_llama_32: ChatOllama = _init_llm_llama_32()
+llm_llama_321b: ChatOllama = _init_llm_llama_321b()
